@@ -176,6 +176,58 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 
 This project is licensed under the MIT License.
 
+## � Deplowyment
+
+### Deploy to Render
+
+1. **Push your code to GitHub**
+   ```bash
+   git add .
+   git commit -m "Ready for deployment"
+   git push origin main
+   ```
+
+2. **Create a new Web Service on Render**
+   - Go to [render.com](https://render.com) and sign in
+   - Click "New +" → "Web Service"
+   - Connect your GitHub repository
+   - Render will auto-detect the `render.yaml` configuration
+
+3. **Set Environment Variables**
+   - `MONGODB_URI` - Your MongoDB connection string
+   - `JWT_SECRET` - Your JWT secret key
+   - `CLIENT_URL` - Your Render app URL (e.g., https://taskx.onrender.com)
+   - `NODE_ENV` - Set to `production`
+
+4. **Deploy**
+   - Click "Create Web Service"
+   - Render will automatically build and deploy your app
+
+### Deploy to Vercel
+
+1. **Install Vercel CLI** (optional)
+   ```bash
+   npm install -g vercel
+   ```
+
+2. **Deploy via Vercel Dashboard**
+   - Go to [vercel.com](https://vercel.com) and sign in
+   - Click "Add New" → "Project"
+   - Import your GitHub repository
+   - Vercel will auto-detect the `vercel.json` configuration
+
+3. **Set Environment Variables**
+   - `MONGODB_URI` - Your MongoDB connection string
+   - `JWT_SECRET` - Your JWT secret key
+   - `CLIENT_URL` - Your Vercel app URL
+   - `NODE_ENV` - Set to `production`
+
+4. **Deploy**
+   - Click "Deploy"
+   - Your app will be live in minutes
+
+**Note:** For Vercel, Socket.io may have limitations. Consider using Render for full-stack apps with WebSocket support.
+
 ## 🙏 Acknowledgments
 
 Built with modern web technologies and best practices to deliver a professional, scalable task management solution for teams of all sizes.

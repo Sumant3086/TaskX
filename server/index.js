@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const http = require('http');
 const socketIo = require('socket.io');
+const path = require('path');
 const connectDB = require('./config/db');
 
 dotenv.config();
@@ -54,9 +55,18 @@ app.use('/api/comments', require('./routes/comments'));
 app.use('/api/notifications', require('./routes/notifications'));
 app.use('/api/seed', require('./routes/seed'));
 
-app.get('/', (req, res) => {
-  res.json({ message: 'Task Management API is running' });
-});
+// Serve static files in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/dist')));
+  
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+  });
+} else {
+  app.get('/', (req, res) => {
+    res.json({ message: 'Task Management API is running' });
+  });
+}
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
