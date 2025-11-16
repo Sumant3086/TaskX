@@ -5,8 +5,10 @@ import toast from 'react-hot-toast'
 
 let socket = null
 
+const SOCKET_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000'
+
 export const initSocket = (userId, dispatch) => {
-  socket = io('http://localhost:5000')
+  socket = io(SOCKET_URL)
 
   socket.on('connect', () => {
     console.log('Socket connected')
